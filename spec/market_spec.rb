@@ -44,6 +44,10 @@ RSpec.describe Market do
 
   describe "#add_vendor" do
     it "adds vendors to the market" do
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)
+      @market.add_vendor(@vendor3)
+      
       expect(@market.vendors).to eq([@vendor1, @vendor2, @vendor3])
     end
   end
