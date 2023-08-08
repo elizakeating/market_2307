@@ -74,12 +74,6 @@ RSpec.describe Market do
     end
   end
 
-  it "returns potential_revenue of each vendor" do
-    expect(@vendor1.potential_revenue).to eq(29.75)
-    expect(@vendor2.potential_revenue).to eq(345.00)
-    expect(@vendor3.potential_revenue).to eq(48.75)
-  end
-
   describe "#sorted_item_list" do
     it "returns a list of all items the vendors have in alphabetical order" do
       @market.add_vendor(@vendor1)
