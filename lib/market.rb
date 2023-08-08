@@ -22,4 +22,44 @@ class Market
       vendor.inventory.include?(item)
     end
   end
+
+  def sorted_item_list
+    item_names = []
+
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item|
+        item_names << item[0].name
+      end
+    end
+
+    item_names.uniq.sort
+  end
+
+  def total_inventory
+    inventory_hash = {}
+    
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item|
+        inventory_hash[item[0]] = {quantity: 0, vendors: []}
+      end
+    end
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item|
+        inventory_hash[item[0]][:quantity] += item[1]
+        inventory_hash[item[0]][:vendors] << vendor
+      end
+    end
+    inventory_hash
+  end
+
+  def overstocked_items
+    items = []
+
+    total_inventory.each do |item, values|
+      if values[:quantity] > 50 && values[:vendors].count > 1
+        items << item
+      end
+    end
+    items
+  end
 end
