@@ -24,15 +24,11 @@ class Market
   end
 
   def sorted_item_list
-    item_names = []
-
-    @vendors.each do |vendor|
-      vendor.inventory.each do |item|
-        item_names << item[0].name
+    @vendors.map do |vendor|
+      vendor.inventory.map do |item|
+        item[0].name
       end
-    end
-
-    item_names.uniq.sort
+    end.flatten.uniq.sort
   end
 
   def total_inventory
